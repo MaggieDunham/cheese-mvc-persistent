@@ -4,8 +4,8 @@
 
 
 <body class="container">
-    <meta charset="UTF-8">
-    <title>Title</title>
+
+<h1 th:text="${title}">Categories</h1>
 
 <nav th:replace="fragments :: navigation">
     <a href="/category/add">Add Category</a>
@@ -16,14 +16,13 @@
 <table class="table">
 
     <tr>
-        <ul>Title</ul>
         <ul>Name</ul>
-        <ul>Category</ul>
+        <ul>Division</ul>
     </tr>
+
     <tr th:each="category : ${categories}">
-        <td th:text="${category.title}"></td>
         <td th:text="${category.name}"></td>
-        <td th:text="${category.category}"></td>
+        <td th:text="${category.division}"></td>
     </tr>
 </table>
 

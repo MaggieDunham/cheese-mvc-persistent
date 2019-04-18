@@ -1,12 +1,12 @@
 package org.launchcode.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.security.PublicKey;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Category {
@@ -19,17 +19,13 @@ public class Category {
     @Size(min=3, max=15)
     private String name;
 
-    @NotNull
-    @Size(min=1, message = "Please name the category")
-    private String division;
+    @OneToMany
+    @JoinColumn(name = "category_id")
+    private List<Cheese> cheeses = new ArrayList<>();
 
-    //private Category division;
-
-
-    public Category(String name, String division) {
+    public Category(String name) {
 
         this.name = name;
-        this.division = division;
 
     }
 
@@ -42,13 +38,6 @@ public class Category {
 
     public void setName(String name) {this.name = name; }
 
-    public String getDivision() { return division; }
-
-    public void setDivision(String division) { this.division = division; }
-
-    //public CategoryType getType() { return type; }
-
-    //public void setType(CategoryType type) {this.type = type; }
 
 
 }

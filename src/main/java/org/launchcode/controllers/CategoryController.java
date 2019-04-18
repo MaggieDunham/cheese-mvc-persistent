@@ -21,7 +21,6 @@ public class CategoryController {
     private CategoryDao categoryDao;
 
 
-
     @RequestMapping(value = "")
     public String index(Model model) {
 
@@ -32,8 +31,9 @@ public class CategoryController {
         return "category/index";
 
     }
-    @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddCategoryForm(Model model) {
+
+    @RequestMapping(value = "add")
+    public String add(Model model) {
         model.addAttribute("title", "Add Category");
         model.addAttribute(new Category());
         //model.addAttribute("categoryTypes", CategoryTypes.values());
@@ -41,17 +41,18 @@ public class CategoryController {
         return "category/add";
 
     }
+
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCategotyForm(@ModelAttribute @Valid Category newCategory, Errors errors, Model model  ) {
+    public String add(@ModelAttribute @Valid Category category, Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute( "title", "Add Category");
+            model.addAttribute(category);
             return "category/add";
+        } else {
+
+            categoryDao.save(category);
+            return "redirect:";
         }
 
-        categoryDao.save(newCategory);
-        return "redirect:";
+
     }
-
-
-
 }

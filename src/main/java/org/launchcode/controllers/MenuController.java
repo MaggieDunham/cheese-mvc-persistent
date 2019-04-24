@@ -77,11 +77,13 @@ public class MenuController {
 
         // When we load this page, we see an empty dropdown. We should see all the cheeses
         // th:object, th:field stuff is probably going on
-        // I think I fixed this (Maggie)
+        // I think I fixed this dropdown problem (Maggie)
+        // Still get an error at /menu/add-item
 
         model.addAttribute("title", "Add item to menu: " + menu.getName());
         model.addAttribute("form", form);
-
+        // I changed this to "form, form and now it doesn't work and I
+        // don't remember what it was before
         return "menu/add-item";
     }
 

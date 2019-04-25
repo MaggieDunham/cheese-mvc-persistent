@@ -1,6 +1,5 @@
 package org.launchcode.controllers;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.launchcode.models.Category;
 import org.launchcode.models.Cheese;
 import org.launchcode.models.Menu;
@@ -87,27 +86,27 @@ public class MenuController {
         return "menu/add-item";
     }
 
-//    @RequestMapping(value = "add-item", method = RequestMethod.POST)
-//    public String addItem(@ModelAttribute @Valid AddMenuItemForm form, Errors errors,
-//                          Model model) {
+    @RequestMapping(value = "add-item", method = RequestMethod.POST)
+    public String addItem(@ModelAttribute @Valid AddMenuItemForm form, Errors errors,
+                          Model model) {
 //
-//        if (errors.hasErrors()) {
+        if (errors.hasErrors()) {
 //        //    Menu menu = form.getMenu();
-//            model.addAttribute("form", form);
+            model.addAttribute("form", form);
 //        //    return "/menu/add-item";
-//        }
-//        Cheese theCheese = cheeseDao.findOne(form.getCheeseId());
-//        Menu theMenu = menuDao.findOne(form.getMenuId());
-//        theMenu.addItem(theCheese);
-//        menuDao.save(theMenu);
+        }
+            Cheese theCheese = cheeseDao.findOne(form.getCheeseId());
+            Menu theMenu = menuDao.findOne(form.getMenuId());
+            theMenu.addItem(theCheese);
+            menuDao.save(theMenu);
 //
-//        return "redirect:/menu/view" + theMenu.getId();
+            return "redirect:/menu/view/" + theMenu.getId();
 //        //We actually need to get the cheese using the form's cheeseId
 //        //Likewise, we need the menu
 //        //Add cheese to menu and save
 //        //Return /menu/view/menuId where menuId comes from the form
 //        //return "";
-//    }
+      }
 
 
 
